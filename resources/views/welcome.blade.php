@@ -9,6 +9,11 @@
 
                 <div class="panel-body">
                     Your Application's Landing Page.
+                    @if (Illuminate\Support\Facades\Auth::check())
+                        <p>Vous etes connecter</p>
+                    @else
+                        <p>vous n etes pas co</p>
+                    @endif
                 </div>
             </div>
         </div>
