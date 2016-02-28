@@ -1,0 +1,18 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Projet extends Model
+{
+    protected $fillable = [
+        'id',
+        'nom',
+        'dateP',
+        'description',
+        'competences',
+        'image',
+        'lien'
+    ];
+}

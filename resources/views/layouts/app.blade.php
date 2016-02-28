@@ -53,7 +53,7 @@
                     <a href="{{ url('/') }}">Accueil</a>
                 </li>
                  <li>
-                    <a href="#">Projets</a>
+                    <a href="{{ url('/projets') }}">Projets</a>
                 </li>
                 <li>
                     <a href="#">CV</a>

@@ -28,7 +28,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
-
+    Route::resource('projets','ProjetsController');
 });
 /*
 Route::group(['middleware' => 'web'], function () {
