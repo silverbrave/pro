@@ -10,6 +10,7 @@
             <div class="row">
                 <h2>{{$projet->nom}}</h2>
                 <p>{{$projet->description}}</p>
+                <img id="#" src="{!! URL::asset('images/'.$projet->image) !!}" alt="aperçu image" class="img" style="max-height: 300px;max-width: 300px"/>
             </div>
          @endforeach
     </div>

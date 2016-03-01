@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class ProjetsController extends Controller
 {
@@ -41,39 +42,17 @@ class ProjetsController extends Controller
      */
     public function store(Request $request)
     {
-//dd($request->all());
+    //    dd($request->all());
         $this->validate($request, [
-            'nomModele' => 'required|max:255',
-            'nomActivite' => 'required|max:255'
+            'nom' => 'required|max:255',
+            'dateP' => 'required',
+            'lien' => 'required|max:255'
+
         ]);
 
-
-        $nomModele=$request->get('nomModele');
-        $nomActivite=$request->get('nomActivite');
-        $nomModele =ucwords($nomModele);
-        $nomActivite =ucwords($nomActivite);
-
-        $nomPrenomPrive = $request->get('nomPrenomPrive');
-        $nomAnimPrive = $request->get('nomAnimPrive');
-        $agePrive = $request->get('agePrive');
-        if($nomPrenomPrive=="1"){
-            $nomPrenomPrive=1;
-        }
-        else{
-            $nomPrenomPrive=0;
-        }
-        if($nomAnimPrive=="1"){
-            $nomAnimPrive=1;
-        }
-        else{
-            $nomAnimPrive=0;
-        }
-        if($agePrive=="1"){
-            $agePrive=1;
-        }
-        else{
-            $agePrive=0;
-        }
+       // dd($request->all());
+        $nom=$request->get('nom');
+        $nom =ucwords($nom);
 
         if (Input::hasFile('image')) {
             $imgName = Input::file('image')->getClientOriginalName();
@@ -81,19 +60,17 @@ class ProjetsController extends Controller
         else{
             $imgName = 'troll.png';
         }
-        if($model= DB::table('modeles')->where('nomModele',$nomModele)->get()){
-            return redirect(route('modeles.modele.create'))->withInput()->withErrors(['modeleExistant' =>'Modele deja existant']);
-        }
-        else{
-            if(Modeles::create(['nomModele'=>$nomModele,'nomActivite'=>$nomActivite,'nomAnim'=>$request->get('nomAnim'),'nbDePlaces'=>$request->get('nbDePlaces'),'localisation'=>$request->get('localisation'),'descript'=>$request->get('descript'),'urlImage'=>$imgName,'pole' =>$request->get('pole'),'nomPrenomPrive' =>$nomPrenomPrive,'nomAnimPrive'=>$nomAnimPrive,'agePrive'=>$agePrive])){
-                return redirect(route('modeles.modele.index'));
+
+            if(Projet::create(['nom' =>$nom,'dateP'=>$request->get('dateP'),'description'=>$request->get('description'),'competences'=>$request->get('competences'),'image'=>$imgName,'lien'=>$request->get('lien')])){
+                Input::file('image')->move('images', $imgName);
+                return redirect(route('projets.index'));
             }
             else{
-                return redirect(route('modeles.modele.create'))->withInput();
+                return redirect(route('projets.create'))->withInput();
 
             }
         }
-    }
+
 
     /**
      * Display the specified resource.

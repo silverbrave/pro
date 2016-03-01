@@ -76,11 +76,15 @@
 
 <!-- Page Content -->
 <div class="container">
-
+    <div class="col-sm-8">
     @yield('content')
+    </div>
+    <div class="col-sm-4">
+        @yield('imageActivite')
+    </div>
     <!-- /.row -->
-
 </div>
+
 <!-- /.container -->
 
 <!-- jQuery Version 1.11.1 -->
@@ -88,6 +92,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+@yield('script')
 </body>
 </html>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+
         <h1>Ajout d'un projet</h1>
         {!!Form::open(['route' => 'projets.store','method'=>'POST', 'files'=> true]) !!}
 
@@ -14,20 +14,63 @@
             {!!Form::text('dateP', null, ['class' => 'form-control','id' =>'dateP']) !!}
                 </div>
          <div class="form-group">
-            {!!Form::label('label', 'Description *') !!}
+            {!!Form::label('label', 'Description ') !!}
             {!!Form::textarea('description', null, ['class' => 'form-control','id' =>'desc']) !!}
                 </div>
          <div class="form-group">
-            {!!Form::label('label', 'Compétences *') !!}
+            {!!Form::label('label', 'Compétences ') !!}
             {!!Form::text('competences', null, ['class' => 'form-control','id' =>'competences']) !!}
                 </div>
          <div class="form-group">
-            {!!Form::label('label', 'Lien *') !!}
+            {!!Form::label('label', 'Lien * (localhost sinon)') !!}
             {!!Form::text('lien', null, ['class' => 'form-control','id' =>'lien']) !!}
                 </div>
 
-        <button class="btn btn-primary" id="btnEnvoyer">Envoyer</button>
-        {!! Form::reset('Reset') !!}
-        {!! Form::close() !!}
+        <button class="btn btn-primary" id="btnEnvoyer">Ajouter le projet</button>
+        {!! Form::reset('Effacer') !!}
+
+@stop
+
+@section('imageActivite')
+
+    <img id="blah" src="{!! URL::asset('images/troll.png') !!}" alt="aperçu image" class="img" style="max-height: 300px;max-width: 300px"/>
+
+    <div class="control-group">
+        <div class="controls"style="float: right" >
+            {!!Form::label('image', 'Image') !!}
+            {!! Form::file('image',['class' => 'form-control','id' =>'imgInp']) !!}
+
+            <p class="errors">{!!$errors->first('image')!!}</p>
+            @if(Session::has('error'))
+                <p class="errors">{!! Session::get('error') !!}</p>
+            @endif
+        </div>
     </div>
-@endsection
+    <div id="success"> </div>
+    {!! Form::close() !!}
+@stop
+@section('script')
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+            });
+            $('#datetimepicker2').datetimepicker({
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function(){
+            readURL(this);
+        });
+    </script>
+@stop
