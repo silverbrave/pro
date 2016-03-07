@@ -56,16 +56,18 @@
                     <a href="{{ url('/projets') }}">Projets</a>
                 </li>
                 <li>
-                    <a href="#">CV</a>
+                    <a href="{{ url('/cv') }}">CV</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
                 </li>
                 @if (Illuminate\Support\Facades\Auth::check())
+
                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Se déconnecter</a></li>
                 @else
                     <li><a href="{{ url('/login') }}">Se connecter</a></li>
-                    <li><a href="{{ url('/register') }}">S'inscrire</a></li>
+                    <li><a href="{{ url('/register') }}">Inscrire</a></li>
+
                 @endif
             </ul>
         </div>

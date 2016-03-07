@@ -29,6 +29,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
     Route::resource('projets','ProjetsController');
+    Route::get('/cv',['as'=> 'cv','uses' =>'CVsController@index']);
 });
 /*
 Route::group(['middleware' => 'web'], function () {

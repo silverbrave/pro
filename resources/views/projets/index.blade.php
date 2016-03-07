@@ -1,17 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+
     <h1>Les projets</h1>
         @if (Illuminate\Support\Facades\Auth::check())
         <p><a class="btn btn-primary" href="{{ route('projets.create') }}">Ajouter un projet</a></p>
         @endif
-        @foreach($projets as $projet)
-            <div class="row">
-                <h2>{{$projet->nom}}</h2>
-                <p>{{$projet->description}}</p>
-                <img id="#" src="{!! URL::asset('images/'.$projet->image) !!}" alt="aperçu image" class="img" style="max-height: 300px;max-width: 300px"/>
+
+        <div class="row">
+            @foreach($projets as $projet)
+            <div class="col-sm-6 col-md-4">
+
+                <div class="thumbnail">
+                    <img src="{!! URL::asset('images/'.$projet->image) !!}" alt="img_projet">
+                    <div class="caption">
+                        <h3>{{$projet->nom}}</h3>
+                        <p>{{$projet->description}}</p>
+                        <p><a href="#" class="btn btn-primary" role="button">Accès au projet</a> <a href="#" class="btn btn-default" role="button">Plus</a></p>
+                    </div>
+                </div>
+
             </div>
-         @endforeach
+            @endforeach
+        </div>
+
     </div>
  @endsection
