@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h1>Florian PALABOST</h1>
         <button type="button" class="btn btn-default" aria-label="Left Align" onclick="javascript:window.print()">
             <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
@@ -12,10 +12,10 @@
         </button>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-2">
         <img src="{{asset('images/profil.png')}}" alt="photo_profil" class="img-circle"/>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
        <p>11 rue Paul Valéry<br>
            69780 Mions<br>
            06 34 15 86 07<br>

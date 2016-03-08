@@ -80,8 +80,8 @@ class ProjetsController extends Controller
      */
     public function show($id)
     {
-        $model = Modeles::findOrFail($id);
-        return $model;
+        $projet = Projet::findOrFail($id);
+        return view('projets.show',compact('projet'));
     }
 
     /**
