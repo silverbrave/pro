@@ -31,7 +31,7 @@
                 <div class="caption">
                     <h3>{{$projet->nom}}</h3>
                     <p>{{$projet->description}}</p>
-                    <p><a href="#" class="btn btn-primary" role="button">Accès au projet</a> <a href="{{route('projets.show',$projet->id)}}" class="btn btn-default" role="button">Plus d'infos</a></p>
+                    <p><a href="{{route('projets.show',$projet->id)}}" class="btn btn-default" role="button">Plus d'infos</a></p>
                 </div>
             </div>
         </div>

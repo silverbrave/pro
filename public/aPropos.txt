@@ -1,0 +1,6 @@
+<!--Fichier de description 
+auteur : Florian PALABOST -->
+
+Bonjour, je m'appelle Florian palabost, 21 ans et étudiant en 3ème année de Licence Informatique à l'Université Claude Bernard de Lyon 1. Depuis longtemps déjà, je suis passionné par les nouvelles technologies et plus précisément, par l'informatique. C'est pour cela que j'ai envie de me de développer dans ce domaine et me spécialiser ensuite dans le web. J'aime de plus, le sport (tennis, volley, vtt, natation) et j'apprécie aussi de sortir avec mes amis. Mais encore, j'aime voyager car cela me permet de découvrir de nouvelles cultures et de nouveaux horizons. Au niveau de la personnalité : je me considère comme quelqu'un de sérieux, perfectionniste qui aime relever des défis.
+<br>
+FIN TOTO
