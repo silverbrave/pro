@@ -112,11 +112,14 @@
                  <li>
                     <a href="{{ url('/projets') }}" style="float: right">PortFolio</a>
                 </li>
+                 <li>
+                    <a href="{{ url('/parcours') }}" style="float: right">Parcours</a>
+                </li>
                 <li>
                     <a href="{{ url('/competences') }}" style="float: right">Compétences</a>
                 </li>
                 <li>
-                    <a href="#" style="float: right">Contact </a>
+                    <a href="{{ url('/contact') }}" style="float: right">Contact </a>
                 </li>
                 @if (Illuminate\Support\Facades\Auth::check())
 

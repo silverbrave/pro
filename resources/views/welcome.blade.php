@@ -15,10 +15,10 @@
             <div class="row">
                 <div class="col-md-5">
                 </div>
-                <div class="col-md-2">
+                <!--<div class="col-md-2">
                     <img src="{{asset('images/profil.png')}}" alt="photo_profil" class="img-circle"/>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>-->
             </div>
 
             <h2>A propos de moi </h2>
