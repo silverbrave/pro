@@ -15,6 +15,7 @@
             max-height:300px;
 
         }
+
     </style>
     <h1>Les projets</h1>
         @if (Illuminate\Support\Facades\Auth::check())
@@ -29,9 +30,22 @@
             <div class="thumbnail projecto">
                 <img src="{!! URL::asset('images/'.$projet->image) !!}" alt="img_projet" class="img img*responsive">
                 <div class="caption">
-                    <h3>{{$projet->nom}}</h3>
-                    <p>{{$projet->description}}</p>
-                    <p><a href="{{route('projets.show',$projet->id)}}" class="btn btn-default" role="button">Plus d'infos</a></p>
+                    <h3><a href="{{$projet->lien}}" target="_blank">{{$projet->nom}}</a></h3>
+                    <p style="text-align: justify">{{$projet->description}}</p>
+                  <div class="row">
+                      <div class="col-md-6">
+                          <p><a href="{{route('projets.show',$projet->id)}}" class="btn btn-info" role="button">Plus d'infos</a></p>
+                      </div>
+                      <div class="col-md-6">
+                          {!! Form::open(array('route' => array('projets.destroy', $projet->id), 'method' => 'delete')) !!}
+                          <button type="submit"  class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer ce projet ?');">Supprimer</button>
+                          {!! Form::close() !!}
+                      </div>
+                  </div>
+
+
+
+
                 </div>
             </div>
         </div>

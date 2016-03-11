@@ -69,6 +69,10 @@
             width:50px;
         }
 
+        .navbar-inverse{
+        background-color: rgba(0,0,0,0.7);
+        }
+
         @media(min-width:768px) {
             body {
                 padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */

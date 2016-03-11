@@ -119,11 +119,11 @@ class ProjetsController extends Controller
      */
     public function destroy($id)
     {
-        $model = Modeles::findOrFail($id);
+        $projet = Projet::findOrFail($id);
 
         //   dd($model);
-        $model->delete();
-        return redirect(route('modeles.modele.index'))->with("Modèle supprimé");
+        $projet->delete();
+        return redirect(route('projets.index'))->with("Projet supprimé");
 
     }
 }
