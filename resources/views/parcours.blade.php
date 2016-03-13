@@ -16,35 +16,33 @@
 
 @section('content')
     <h1 style="text-align: center">Mon parcours</h1>
+    @if (Illuminate\Support\Facades\Auth::check())
+        <p><a class="btn btn-primary" href="{{ route('parcours.create') }}">Ajouter un parcours</a></p>
+    @endif
 <div id="timeline">
-    <ul id="dates">
-        <li><a href="#2013">2013</a></li>
-        <li><a href="#2015">2015</a></li>
-        <li><a href="#2016">2016</a></li>
 
+    <ul id="dates">
+        @foreach($parcours as $parcour)
+        <li><a href="#{{$parcour->annee}}">{{$parcour->annee}}</a></li>
+        @endforeach
     </ul>
+
     <ul id="issues">
-        <li id="2013">
-            <img src="{{asset('images/bacs.png')}}" width="256" height="256" />
-            <h1>2013</h1>
-            <p>Baccalauréat Scientifique<br>
-            Lycée Frédéric Fays - Villeurbanne</p>
+        @foreach($parcours as $parcour)
+        <li id="{{$parcour->annee}}">
+            <img src="{{asset('images/'.$parcour->image)}}" width="256" height="256" />
+            <h1>{{$parcour->annee}}</h1>
+            <p>{{$parcour->diplome}}<br>
+            {{$parcour->description}}</p>
+            @if (Illuminate\Support\Facades\Auth::check())
+                <div class="col-md-6">
+                    {!! Form::open(array('route' => array('parcours.destroy', $parcour->id), 'method' => 'delete')) !!}
+                    <button type="submit"  class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer ce parcours ?');">Supprimer</button>
+                    {!! Form::close() !!}
+                </div>
+            @endif
         </li>
-        <li id="2015">
-            <img src="{{asset('images/dut.jpg')}}" width="256" height="256" />
-            <h1>2015</h1>
-            <p>DUT Informatique<br>
-            Université Claude Bernard - Lyon 1</p>
-            <p>
-                Stage Développeur web - Médiathèque de Bron - 3 mois
-            </p>
-        </li>
-        <li id="2016">
-            <img src="{{asset('images/licence.png')}}" width="256" height="256" />
-            <h1>2016</h1>
-            <p>Licence Informatique<br>
-            Université Claude Bernard - Lyon 1</p>
-        </li>
+        @endforeach
     </ul>
     <div id="grad_left"></div>
     <div id="grad_right"></div>

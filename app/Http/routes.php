@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/competences',['as'=> 'skill','uses' =>'SkillsController@index']);
     Route::get('/contact',['as'=> 'getContact','uses'=>'ContactsController@index']);
     Route::post('/contact',['as'=>'postContact','uses'=>'ContactsController@store']);
-    Route::get('/parcours',['as'=>'parcours','uses'=>'ParcoursController@index']);
+    Route::resource('parcours','ParcoursController');
 });
 /*
 Route::group(['middleware' => 'web'], function () {

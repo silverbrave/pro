@@ -172,7 +172,7 @@
 
 <!-- jQuery Version 1.11.1 -->
 <!-- Bootstrap Core JavaScript -->
-
+@yield('script')
 
 </body>
 </html>

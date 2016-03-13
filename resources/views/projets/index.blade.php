@@ -36,11 +36,13 @@
                       <div class="col-md-6">
                           <p><a href="{{route('projets.show',$projet->id)}}" class="btn btn-info" role="button">Plus d'infos</a></p>
                       </div>
+                      @if (Illuminate\Support\Facades\Auth::check())
                       <div class="col-md-6">
                           {!! Form::open(array('route' => array('projets.destroy', $projet->id), 'method' => 'delete')) !!}
                           <button type="submit"  class="btn btn-danger" onclick="return confirm('Etes vous sûr de vouloir supprimer ce projet ?');">Supprimer</button>
                           {!! Form::close() !!}
                       </div>
+                      @endif
                   </div>
 
 
