@@ -42,33 +42,43 @@ class ProjetsController extends Controller
      */
     public function store(Request $request)
     {
-    //    dd($request->all());
+        //dd($request->all());
         $this->validate($request, [
             'nom' => 'required|max:255',
             'dateP' => 'required',
             'lien' => 'required|max:255'
 
         ]);
+        $dateFr= $request->get('dateP');
+        $tabdate=explode('-',$dateFr);
+      //  $titi = implode('-',$tabdate);
+       // dd($titi);
+        $dateAng=$tabdate[2].'-'.$tabdate[1].'-'.$tabdate[0];
+         //dd($toto);
 
-       // dd($request->all());
-        $nom=$request->get('nom');
-        $nom =ucwords($nom);
+        $nom = $request->get('nom');
+        $nom = ucwords($nom);
 
         if (Input::hasFile('image')) {
             $imgName = Input::file('image')->getClientOriginalName();
-        }
-        else{
-            $imgName = 'troll.png';
-        }
 
-            if(Projet::create(['nom' =>$nom,'dateP'=>$request->get('dateP'),'description'=>$request->get('description'),'competences'=>$request->get('competences'),'image'=>$imgName,'lien'=>$request->get('lien')])){
+            if (Projet::create(['nom' => $nom, 'dateP' => $dateAng, 'description' => $request->get('description'), 'competences' => $request->get('competences'), 'image' => $imgName, 'lien' => $request->get('lien')])) {
                 Input::file('image')->move('images', $imgName);
                 return redirect(route('projets.index'));
-            }
-            else{
+            } else {
                 return redirect(route('projets.create'))->withInput();
 
             }
+        } else {
+                $imgName = 'troll.png';
+                if (Projet::create(['nom' => $nom, 'dateP' => $request->get('dateP'), 'description' => $request->get('description'), 'competences' => $request->get('competences'), 'image' => $imgName, 'lien' => $request->get('lien')])) {
+                    //  Input::file('image')->move('images', $imgName);
+                     return redirect(route('projets.index'));
+                } else {
+                    return redirect(route('projets.create'))->withInput();
+
+                }
+        }
         }
 
 

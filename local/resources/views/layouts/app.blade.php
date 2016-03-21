@@ -15,8 +15,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script>
+
   @yield('csse')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <!-- Custom CSS -->
     <style>
         body {
@@ -136,7 +140,7 @@
                     <li><a href="{{ url('/logout') }}" style="float: right"><i class="fa fa-btn fa-sign-out"></i>Se déconnecter</a></li>
                 @else
                     <li><a href="{{ url('/login') }}" style="float: right">Se connecter</a></li>
-                    <li><a href="{{ url('/register') }}" style="float: right">Inscrire</a></li>
+
 
                 @endif
             </ul>

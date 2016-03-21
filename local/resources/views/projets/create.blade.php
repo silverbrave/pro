@@ -1,29 +1,64 @@
 @extends('layouts.app')
 
     @section('content')
+
+
         <div class="col-md-6">
         <h1>Ajout d'un projet</h1>
         {!!Form::open(['route' => 'projets.store','method'=>'POST', 'files'=> true]) !!}
 
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('nom') ? ' has-error' : '' }}">
             {!!Form::label('label', 'Nom *') !!}
             {!!Form::text('nom', null, ['class' => 'form-control','id' =>'nom']) !!}
+            @if ($errors->has('nom'))
+                <span class="help-block">
+                                        <strong>{{ $errors->first('nom') }}</strong>
+                                    </span>
+            @endif
         </div>
-        <div class="form-group">
-            {!!Form::label('label', 'Date réalisation *') !!}
-            {!!Form::text('dateP', null, ['class' => 'form-control','id' =>'dateP']) !!}
-        </div>
-        <div class="form-group">
+
+
+            <div class="form-group{{ $errors->has('dateP') ? ' has-error' : '' }}">
+                {!!Form::label('label', 'Date réalisation *') !!}
+                <div class='input-group date' id='datetimepicker1'>
+                    {!!Form::text('dateP', null, ['class' => 'form-control','id' =>'dateP']) !!}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                @if ($errors->has('dateP'))
+                    <span class="help-block">
+                                        <strong>{{ $errors->first('dateP') }}</strong>
+                                    </span>
+                @endif
+            </div>
+
+        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
             {!!Form::label('label', 'Description ') !!}
             {!!Form::textarea('description', null, ['class' => 'form-control','id' =>'desc']) !!}
+            @if ($errors->has('description'))
+                <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+            @endif
         </div>
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
             {!!Form::label('label', 'Compétences ') !!}
             {!!Form::text('competences', null, ['class' => 'form-control','id' =>'competences']) !!}
+            @if ($errors->has('competences'))
+                <span class="help-block">
+                                        <strong>{{ $errors->first('competences') }}</strong>
+                                    </span>
+            @endif
         </div>
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('lien') ? ' has-error' : '' }}">
             {!!Form::label('label', 'Lien * (localhost sinon)') !!}
             {!!Form::text('lien', null, ['class' => 'form-control','id' =>'lien']) !!}
+            @if ($errors->has('lien'))
+                <span class="help-block">
+                                        <strong>{{ $errors->first('lien') }}</strong>
+                                    </span>
+            @endif
         </div>
 
         <button class="btn btn-primary" id="btnEnvoyer">Ajouter le projet</button>
@@ -57,11 +92,12 @@
 
 
 @section('script')
+
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
-            });
-            $('#datetimepicker2').datetimepicker({
+                format: 'DD-MM-YYYY'
+                // format: 'YYYY-MM-DD'
             });
         });
         function readURL(input) {
