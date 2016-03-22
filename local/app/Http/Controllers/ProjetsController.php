@@ -49,12 +49,21 @@ class ProjetsController extends Controller
             'lien' => 'required|max:255'
 
         ]);
-        $dateFr= $request->get('dateP');
-        $tabdate=explode('-',$dateFr);
+        $dateFr = $request->get('dateP');
+    //    $tabdate=explode('-',$dateFr);
       //  $titi = implode('-',$tabdate);
        // dd($titi);
-        $dateAng=$tabdate[2].'-'.$tabdate[1].'-'.$tabdate[0];
-         //dd($toto);
+       // $dateAng=$tabdate[2].'-'.$tabdate[1].'-'.$tabdate[0];
+
+       // $date = \DateTime::createFromFormat('j-m-Y',$dateFr);
+       // $dateAng = $date->format('Y-m-d H:i:s');
+
+      //  dd($dateAng);
+
+        $date= new \DateTime($dateFr);
+        $dateAng = $date->format('Y-m-d H:i:s');
+
+       // dd($dateAng);
 
         $nom = $request->get('nom');
         $nom = ucwords($nom);
