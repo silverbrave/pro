@@ -6,6 +6,9 @@
             width: 50px;
             height: 50px;
         }
+        #txtPhp{height:auto; background:#eee; border:1px solid #900; margin:1em;text-align:center}
+        #txtPhp p{text-align:center;padding:0}
+
     </style>
     <h2>Mes Compétences</h2>
 
@@ -14,7 +17,9 @@
     <div class="col-sm-1"></div>
     <div class="col-md-4" style="background-color: rgba(255,0,0,0.5);margin:5px;min-height: 150px;text-align: center">
         <h3>LANGAGES - FRAMEWORK</h3>
-        <img src="{{asset('images/logo/php-logo.png')}}" alt="logo php" class="logos">
+        <a href="#" id="lienPhp">
+            <img src="{{asset('images/logo/php-logo.png')}}" alt="logo php" class="logos" >
+        </a>
         <img src="{{asset('images/logo/java.png')}}" alt="logo java" class="logos">
         <img src="{{asset('images/logo/javaeEE.png')}}" alt="logo javaEE" class="logos">
         <img src="{{asset('images/logo/js.png')}}" alt="logo js" class="logos">
@@ -22,6 +27,10 @@
         <img src="{{asset('images/logo/sql.png')}}" alt="logo sql" class="logos">
         <img src="{{asset('images/logo/c++.png')}}" alt="logo c++" class="logos">
 
+    </div>
+    <div id="txtPhp">
+        Ce texte apparaît et disparaît grâce à un script javascript écrit pour jQuery et qui utilise la fonction toggle().
+        Source: https://www.skyminds.net/jquery-script-utilisant-la-fonction-toggle-pour-affichercacher-un-bloc-html/
     </div>
     <div class="col-md-4" style="background-color:rgba(229,130,17,0.5);margin:5px;min-height: 150px;text-align: center">
         <h3>OUTILS</h3>
@@ -49,5 +58,18 @@
        <div class="col-sm-1"></div>
        <div class="col-sm-1"></div>
 </div>
+
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        //a voir
+        jQuery(document).ready(function(){
+           jQuery('#txtPhp').hide();
+            jQuery('a#lienPhp').click(function(){
+               jQuery('#txtPhp').toggle(400);
+            });
+        });
+    </script>
 
 @endsection

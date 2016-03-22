@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Projet;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,10 +19,12 @@ class ProjetsController extends Controller
 
     public function index()
     {
+
         $projets = Projet::select(DB::raw('projets.*'))
             ->orderBy('created_at', 'desc')->get();
         return view('projets.index',compact('projets'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,20 +53,11 @@ class ProjetsController extends Controller
 
         ]);
         $dateFr = $request->get('dateP');
-    //    $tabdate=explode('-',$dateFr);
-      //  $titi = implode('-',$tabdate);
-       // dd($titi);
-       // $dateAng=$tabdate[2].'-'.$tabdate[1].'-'.$tabdate[0];
 
-       // $date = \DateTime::createFromFormat('j-m-Y',$dateFr);
-       // $dateAng = $date->format('Y-m-d H:i:s');
+        $date = date_create_from_format('d-m-Y', $dateFr);
+          $dateAng= date_format($date, 'Y-m-d');
 
-      //  dd($dateAng);
-
-        $date= new \DateTime($dateFr);
-        $dateAng = $date->format('Y-m-d H:i:s');
-
-       // dd($dateAng);
+      // dd($dateAng);
 
         $nom = $request->get('nom');
         $nom = ucwords($nom);
@@ -80,7 +74,7 @@ class ProjetsController extends Controller
             }
         } else {
                 $imgName = 'troll.png';
-                if (Projet::create(['nom' => $nom, 'dateP' => $request->get('dateP'), 'description' => $request->get('description'), 'competences' => $request->get('competences'), 'image' => $imgName, 'lien' => $request->get('lien')])) {
+                if (Projet::create(['nom' => $nom, 'dateP' => $dateAng, 'description' => $request->get('description'), 'competences' => $request->get('competences'), 'image' => $imgName, 'lien' => $request->get('lien')])) {
                     //  Input::file('image')->move('images', $imgName);
                      return redirect(route('projets.index'));
                 } else {
@@ -99,8 +93,14 @@ class ProjetsController extends Controller
      */
     public function show($id)
     {
+       setlocale(LC_TIME, "FR");
+        $timezone = 'Europe/Paris';
+        $tz= new DateTimeZone($timezone);
         $projet = Projet::findOrFail($id);
-        return view('projets.show',compact('projet'));
+        $date = date_create_from_format('Y-m-d', $projet->dateP, $tz);
+        $date=date_format($date,'d-m-Y');
+        $date=strftime('%d %B %Y',strtotime($date));
+        return view('projets.show',compact('projet','date'));
     }
 
     /**

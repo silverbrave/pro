@@ -156,7 +156,7 @@
 <div class="container" id="main">
     <div class="col-sm-1"></div>
     <div class="col-sm-1"></div>
-
+    <img src="{{asset('images/construction.png')}}" alt="">
          @yield('content')
         @yield('imageActivite')
 

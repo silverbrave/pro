@@ -23,7 +23,7 @@
 
         <div class="col-md-5">
             <h3>Description </h3>
-            <p>Réalisation du projet : {{$projet->dateP}}</p>
+            <p>Réalisation du projet : {{$date}}</p>
             <p style="text-align: justify">{{$projet->description}}</p>
             <a href="{{$projet->lien}}">Visiter le projet</a>
             <h3>Technologies</h3>
